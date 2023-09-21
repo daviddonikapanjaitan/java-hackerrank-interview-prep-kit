@@ -2,6 +2,9 @@ package linked_lists.P1InsertANodeAtASpecificPosition;
 
 // Java program for insertion in a single linked
 // list at a specified position
+// problem
+// https://www.hackerrank.com/challenges/insert-a-node-at-a-specific-position-in-a-linked-list/problem?isFullScreen=true&h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=linked-lists
+// solution
 // https://www.geeksforgeeks.org/insert-a-node-at-a-specific-position-in-a-linked-list/
 public class Solution1 {
 
