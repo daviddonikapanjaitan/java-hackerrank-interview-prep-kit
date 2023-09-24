@@ -1,4 +1,4 @@
-package search.hash_tables_ice_cream_parlor;
+package search.P1HashTablesIceCreamParlor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
