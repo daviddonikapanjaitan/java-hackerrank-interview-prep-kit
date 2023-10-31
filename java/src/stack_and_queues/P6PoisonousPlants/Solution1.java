@@ -28,14 +28,14 @@ public class Solution1 {
                 days[i] = 1;
             }
 
-            minDays = minDays < p[i] ? minDays : p[i];
+            minDays = Math.min(minDays, p[i]);
 
             while (!stack.isEmpty() && p[stack.peek()] >= p[i]){
                 increaseNumberOfDays(p, days, minDays, stack, i);
                 stack.pop();
             }
 
-            maxDays = maxDays > days[i] ? maxDays : days[i];
+            maxDays = Math.max(maxDays, days[i]);
             stack.push(i);
         }
 
@@ -44,8 +44,7 @@ public class Solution1 {
 
     private static void increaseNumberOfDays(int[] p, int[] days, int minDays, Deque<Integer> stack, int i) {
         if (p[i] > minDays) {
-            days[i] = days[i] > days[stack.peek()] + 1 ?
-                    days[i] : days[stack.peek()] + 1;
+            days[i] = Math.max(days[i], days[stack.peek()] + 1);
         }
     }
 }

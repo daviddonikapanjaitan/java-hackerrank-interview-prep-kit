@@ -5,6 +5,37 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
+abstract class Node implements Comparable<Node> {
+    public  int frequency; // the frequency of this tree
+    public  char data;
+    public  Node left, right;
+    public Node(int freq) {
+        frequency = freq;
+    }
+
+    // compares on the frequency
+    public int compareTo(Node tree) {
+        return frequency - tree.frequency;
+    }
+}
+
+class HuffmanLeaf extends Node {
+
+    public HuffmanLeaf(int freq, char val) {
+        super(freq);
+        data = val;
+    }
+}
+
+class HuffmanNode extends Node {
+
+    public HuffmanNode(Node l, Node r) {
+        super(l.frequency + r.frequency);
+        left = l;
+        right = r;
+    }
+}
+
 // solution
 // https://github.com/Transfusion/hackerrank-solutions/blob/master/Data%20Structures/Trees/Huffman%20Decoding.java
 class Decoding {
@@ -34,6 +65,8 @@ class Decoding {
 
 public class Solution2 {
 
+    public static Map<Character,String> mapA=new HashMap<>();
+
     // input is an array of frequencies, indexed by character code
     public static Node buildTree(int[] charFreqs) {
 
@@ -59,8 +92,6 @@ public class Solution2 {
         return trees.poll();
     }
 
-    public static Map<Character,String> mapA=new HashMap<>();
-
     public static void printCodes(Node tree, StringBuffer prefix) {
 
         assert tree != null;
@@ -70,7 +101,7 @@ public class Solution2 {
 
             // print out character, frequency, and code for this leaf (which is just the prefix)
             //System.out.println(leaf.data + "\t" + leaf.frequency + "\t" + prefix);
-            mapA.put(leaf.data,prefix.toString());
+            mapA.put(leaf.data, prefix.toString());
 
         } else if (tree instanceof HuffmanNode) {
             HuffmanNode node = (HuffmanNode)tree;
@@ -115,36 +146,5 @@ public class Solution2 {
         //System.out.println(s);
         Decoding d = new Decoding();
         d.decode(s.toString(), tree);
-    }
-}
-
-abstract class Node implements Comparable<Node> {
-    public  int frequency; // the frequency of this tree
-    public  char data;
-    public  Node left, right;
-    public Node(int freq) {
-        frequency = freq;
-    }
-
-    // compares on the frequency
-    public int compareTo(Node tree) {
-        return frequency - tree.frequency;
-    }
-}
-
-class HuffmanLeaf extends Node {
-
-    public HuffmanLeaf(int freq, char val) {
-        super(freq);
-        data = val;
-    }
-}
-
-class HuffmanNode extends Node {
-
-    public HuffmanNode(Node l, Node r) {
-        super(l.frequency + r.frequency);
-        left = l;
-        right = r;
     }
 }
