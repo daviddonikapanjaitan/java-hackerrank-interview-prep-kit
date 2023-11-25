@@ -42,34 +42,6 @@ public class Solution1 {
         }
     }
 
-    public static void bfs(TreeNode node, List<Integer> bst) {
-        if(node != null) {
-            bfs(node.lchild, bst);
-
-            System.out.println(node.toOut());
-            bst.add(node.id);
-            bfs(node.rchild, bst);
-        }
-    }
-
-    public static void swapper (TreeNode node, int h) {
-        if(node != null) {
-            if(node.h < h) {
-                swapper(node.lchild, h);
-                swapper(node.rchild, h);
-            } else {
-                if(node.h % h == 0){
-                    TreeNode tmpNode = node.lchild;
-                    node.lchild = node.rchild;
-                    node.rchild = tmpNode;
-                }
-
-                swapper(node.lchild, h);
-                swapper(node.rchild, h);
-            }
-        }
-    }
-
     public static List<List<Integer>> swapNodes(
             List<List<Integer>> indexes, List<Integer> queries) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
@@ -91,11 +63,11 @@ public class Solution1 {
 
         plevel.add(root);
 
-        while(cpairs.size()!=0){
+        while(!cpairs.isEmpty()){
             Queue<TreeNode> tlevel  = new LinkedList<TreeNode>();
-            while(plevel.size()!=0){
+            while(!plevel.isEmpty()){
 
-                TreeNode parent = (TreeNode) plevel.remove();
+                TreeNode parent = plevel.remove();
                 if (parent==null) continue;
 
                 List<Integer> pair = cpairs.remove();
@@ -112,15 +84,11 @@ public class Solution1 {
                 parent.lchild = clevel.remove();
                 parent.rchild = clevel.remove();
 
-
                 if(parent.lchild!=null) tlevel.add(parent.lchild);
                 if(parent.rchild!=null) tlevel.add(parent.rchild);
             }
             plevel = tlevel;
         }
-
-
-        // swaps.
 
         for(Integer q: queries ){
             List<Integer> bst = new ArrayList<Integer>();
@@ -131,6 +99,34 @@ public class Solution1 {
         }
 
         return result;
+    }
+
+    public static void swapper (TreeNode node, int h) {
+        if(node != null) {
+            if(node.h < h) {
+                swapper(node.lchild, h);
+                swapper(node.rchild, h);
+            } else {
+                if(node.h % h == 0){
+                    TreeNode tmpNode = node.lchild;
+                    node.lchild = node.rchild;
+                    node.rchild = tmpNode;
+                }
+
+                swapper(node.lchild, h);
+                swapper(node.rchild, h);
+            }
+        }
+    }
+
+    public static void bfs(TreeNode node, List<Integer> bst) {
+        if(node != null) {
+            bfs(node.lchild, bst);
+
+            System.out.println(node.toOut());
+            bst.add(node.id);
+            bfs(node.rchild, bst);
+        }
     }
 
     public static void main(String[] args) throws IOException {

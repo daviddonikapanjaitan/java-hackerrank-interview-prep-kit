@@ -1,12 +1,14 @@
-package Search.P5MinimumTimeRequired;
+package Practice.C9Search.P5MinimumTimeRequired;
 
-public class Solution1 {
+import javax.swing.plaf.IconUIResource;
 
-    static long solve (int[] machines, int goal){
+public class Solution {
+
+    static long solve(int[] machines, int goal) {
         long result = -1;
-        long lower = 0;
         long upper = Long.MAX_VALUE;
-        while(lower <= upper){
+        long lower = 0;
+        while (lower <= upper) {
             long middle = (lower + upper) / 2;
             if(computeItemNum(machines, middle) >= goal){
                 result = middle;
@@ -22,13 +24,14 @@ public class Solution1 {
 
     static int computeItemNum(int[] machines, long days) {
         long itemNumber = 0;
-        for(int machine: machines){
-            itemNumber += days / machine;
+        for(int machine: machines) {
+            itemNumber += (days / machine);
 
-            if(itemNumber > Integer.MAX_VALUE) {
+            if(itemNumber >= Integer.MAX_VALUE){
                 return Integer.MAX_VALUE;
             }
         }
+
         return (int) itemNumber;
     }
 

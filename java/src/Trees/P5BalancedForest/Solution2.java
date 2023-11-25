@@ -43,7 +43,7 @@ class Result {
         foundSum = new HashSet<>();
         leftBehindSum = new HashSet<>();
 
-        List<Node> nodes = new ArrayList();
+        List<Node> nodes = new ArrayList<>();
         for (int i = 0; i < c.size(); i++) {
             Node node = new Node();
             node.value = c.get(i);
@@ -93,7 +93,6 @@ class Result {
             min = Math.min(min, possibleMin);
         }
 
-
         foundSum.add(node.sum);
         for(Node next : node.adjacents) {
             solve(next);
@@ -113,49 +112,31 @@ class Result {
         node.sum += node.value;
         return node.sum;
     }
-
 }
 
 public class Solution2 {
     public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+//        List<Integer> c = List.of(1, 2, 2, 1, 1);
+//        List<List<Integer>> edges = new ArrayList<>();
+//        edges.add(List.of(1, 2));
+//        edges.add(List.of(1, 3));
+//        edges.add(List.of(3, 5));
+//        edges.add(List.of(1, 4));
 
-        int q = Integer.parseInt(bufferedReader.readLine().trim());
+//        List<Integer> c = List.of(15, 12, 8, 14, 13);
+//        List<List<Integer>> edges = new ArrayList<>();
+//        edges.add(List.of(1, 2));
+//        edges.add(List.of(1, 3));
+//        edges.add(List.of(1, 4));
+//        edges.add(List.of(4, 5));
 
-        IntStream.range(0, q).forEach(qItr -> {
-            try {
-                int n = Integer.parseInt(bufferedReader.readLine().trim());
+        List<Integer> c = List.of(1,3,5);
+        List<List<Integer>> edges = new ArrayList<>();
+        edges.add(List.of(1, 3));
+        edges.add(List.of(1, 2));
 
-                List<Integer> c = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
-                        .map(Integer::parseInt)
-                        .collect(toList());
-
-                List<List<Integer>> edges = new ArrayList<>();
-
-                IntStream.range(0, n - 1).forEach(i -> {
-                    try {
-                        edges.add(
-                                Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
-                                        .map(Integer::parseInt)
-                                        .collect(toList())
-                        );
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                });
-
-                long result = Result.balancedForest(c, edges);
-
-                bufferedWriter.write(String.valueOf(result));
-                bufferedWriter.newLine();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-
-        bufferedReader.close();
-        bufferedWriter.close();
+        long result = Result.balancedForest(c, edges);
+        System.out.println(result);
     }
 }
 

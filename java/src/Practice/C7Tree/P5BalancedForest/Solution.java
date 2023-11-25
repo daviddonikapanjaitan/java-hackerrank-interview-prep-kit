@@ -14,7 +14,6 @@ class Result {
         int id;
         boolean visited, v2;
         Set<Node> adjacents = new HashSet<>();
-
         @Override
         public int hashCode(){
             return id;
@@ -40,7 +39,7 @@ class Result {
         }
         for (int i = 0; i < edges.size(); i++) {
             Node a = nodes.get(edges.get(i).get(0) - 1);
-            Node b = nodes.get(edges.get(i).get(1) - 1);
+            Node b = nodes.get(edges.get(i). get(1) - 1);
             a.adjacents.add(b);
             b.adjacents.add(a);
         }
@@ -55,33 +54,27 @@ class Result {
     }
 
     static void solve(Node node) {
-        if(node.v2) return;
+        if(node.v2) return;;
         node.v2 = true;
 
         long leftForTwo = total - node.sum;
         long possibleMin = leftForTwo / 2 - node.sum;
 
-        if(
-                leftForTwo % 2 == 0
-                && (leftBehindSum.contains(leftForTwo / 2)
-                || foundSum.contains(leftForTwo / 2 + node.sum)
-                ) && possibleMin >= 0
+        if(leftForTwo % 2 == 0 &&
+                (foundSum.contains(leftForTwo / 2) || leftBehindSum.contains(leftForTwo / 2 - node.sum)) &&
+                possibleMin >= 0
         ){
             min = Math.min(min, possibleMin);
         }
 
         possibleMin = node.sum - (total - node.sum * 2);
-        if((leftBehindSum.contains(node.sum)
-            || leftBehindSum.contains(total - node.sum * 2)
-            || foundSum.contains(node.sum * 2)
-            || foundSum.contains(total - node.sum)
-        ) && possibleMin >= 0
-        ){
+        if((leftBehindSum.contains(node.sum) || leftBehindSum.contains(total - node.sum * 2
+                ) || foundSum.contains(node.sum * 2) || foundSum.contains(total - node.sum)) && possibleMin >= 0){
             min = Math.min(min, possibleMin);
         }
 
         foundSum.add(node.sum);
-        for(Node next: node.adjacents){
+        for(Node next: node.adjacents) {
             solve(next);
         }
         foundSum.remove(node.sum);
@@ -89,13 +82,14 @@ class Result {
     }
 
     static long dfs(Node node) {
-        if (node.visited) return 0;
+        if(node.visited) return 0;
         node.visited = true;
-        for(Node next: node.adjacents){
-            if(!next.visited){
+        for(Node next: node.adjacents) {
+            if(!next.visited) {
                 node.sum += dfs(next);
             }
         }
+
         node.sum += node.value;
         return node.sum;
     }
@@ -104,17 +98,24 @@ class Result {
 public class Solution {
 
     public static void main(String[] args) throws IOException {
-        List<Integer> c = List.of(1, 2, 2, 1, 1);
-        List<List<Integer>> edges = new ArrayList<>();
-        edges.add(List.of(1, 2));
-        edges.add(List.of(1, 3));
-        edges.add(List.of(3, 5));
-        edges.add(List.of(1, 4));
-
-//        List<Integer> c = List.of(1,3,5);
+//        List<Integer> c = List.of(1, 2, 2, 1, 1);
 //        List<List<Integer>> edges = new ArrayList<>();
-//        edges.add(List.of(1, 3));
 //        edges.add(List.of(1, 2));
+//        edges.add(List.of(1, 3));
+//        edges.add(List.of(3, 5));
+//        edges.add(List.of(1, 4));
+
+//        List<Integer> c = List.of(15, 12, 8, 14, 13);
+//        List<List<Integer>> edges = new ArrayList<>();
+//        edges.add(List.of(1, 2));
+//        edges.add(List.of(1, 3));
+//        edges.add(List.of(1, 4));
+//        edges.add(List.of(4, 5));
+
+        List<Integer> c = List.of(1,3,5);
+        List<List<Integer>> edges = new ArrayList<>();
+        edges.add(List.of(1, 3));
+        edges.add(List.of(1, 2));
 
         long result = Result.balancedForest(c, edges);
         System.out.println(result);

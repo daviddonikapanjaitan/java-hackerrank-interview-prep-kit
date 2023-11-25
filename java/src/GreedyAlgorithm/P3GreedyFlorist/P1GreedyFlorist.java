@@ -1,4 +1,4 @@
-package GreedyAlgorithm.P1GreedyFlorist;
+package GreedyAlgorithm.P3GreedyFlorist;
 
 import java.util.Arrays;
 
@@ -15,7 +15,7 @@ public class P1GreedyFlorist {
         while(n > 0) {
             int temp = k;
             while(n > 0 && temp > 0){
-                cost = (rount + 1) * c[n - 1] + cost;
+                cost = (long) (rount + 1) * c[n - 1] + cost;
                 temp--;
                 n--;
             }
