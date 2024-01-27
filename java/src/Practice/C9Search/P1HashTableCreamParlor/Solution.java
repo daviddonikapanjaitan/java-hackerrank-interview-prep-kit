@@ -14,14 +14,10 @@ public class Solution {
 
         HashMap<Integer, Integer> hashMap = new HashMap<>();
         for (int i = 0; i < cost.size(); i++) {
-            if(cost.get(i) < money){
+            if(cost.get(i) < money) {
 
-                if(hashMap.containsKey(money - cost.get(i))){
-                    int index = hashMap.get(money - cost.get(i));
-                    System.out.println((index + 1) + " " + (i + 1));
-                }
 
-                if(!hashMap.containsKey(cost.get(i))){
+                if (!hashMap.containsKey(cost.get(i))) {
                     hashMap.put(cost.get(i), i);
                 }
             }

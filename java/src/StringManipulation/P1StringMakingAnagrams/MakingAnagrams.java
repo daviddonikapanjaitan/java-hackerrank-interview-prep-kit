@@ -1,8 +1,6 @@
-package StringManipulation.strings_making_anagrams;
+package StringManipulation.P1StringMakingAnagrams;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class MakingAnagrams {
 

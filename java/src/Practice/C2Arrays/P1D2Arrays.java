@@ -27,7 +27,7 @@ public class P1D2Arrays {
                     // System.out.println(Arrays.toString(arrSublist.toArray()));
                 }
                 // System.out.println();
-               // System.out.println(collections);
+                // System.out.println(collections);
             }
 
             if(i + 2 < arr.size()){

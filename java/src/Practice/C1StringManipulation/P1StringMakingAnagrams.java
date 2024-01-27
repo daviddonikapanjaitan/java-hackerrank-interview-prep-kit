@@ -6,18 +6,19 @@ public class P1StringMakingAnagrams {
         char[] aChar = a.toCharArray();
         char[] bChar = b.toCharArray();
 
-        int count = 0;
         for (int i = 0; i < aChar.length; i++) {
             for (int j = 0; j < bChar.length; j++) {
                 if(aChar[i] == bChar[j]){
                     aChar[i] = ' ';
-                    bChar[i] = ' ';
+                    bChar[j] = ' ';
+                    break;
                 }
             }
         }
 
+        int count = 0;
         for (int i = 0; i < aChar.length; i++) {
-            if(aChar[i] != ' '){
+            if(aChar[i] != ' ') {
                 count++;
             }
         }
@@ -27,7 +28,6 @@ public class P1StringMakingAnagrams {
                 count++;
             }
         }
-
 
         return count;
     }

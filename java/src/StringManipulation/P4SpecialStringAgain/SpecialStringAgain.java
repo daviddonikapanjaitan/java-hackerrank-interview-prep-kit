@@ -1,4 +1,4 @@
-package StringManipulation.special_string_again;
+package StringManipulation.P4SpecialStringAgain;
 
 import java.util.*;
 

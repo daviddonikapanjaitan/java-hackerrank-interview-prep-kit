@@ -1,4 +1,4 @@
-package StringManipulation.sherlock_and_the_valid_string;
+package StringManipulation.P3SherlockAndTheValidString;
 
 import java.util.*;
 

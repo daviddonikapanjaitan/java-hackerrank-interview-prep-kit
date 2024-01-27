@@ -6,21 +6,23 @@ public class P4SpecialStringAgain {
 
         int palindrome = 0;
         for (int i = 0; i < s.length(); i++) {
-
             int offset = 1;
-            while(i - offset  >= 0 && offset + i < n  && s.charAt(i - offset) == s.charAt(i - 1) && s.charAt(i + offset) == s.charAt(i - 1)
+
+            while (i - offset >= 0 && (i + offset < n) &&
+                    (s.charAt(i - 1) == s.charAt(i + offset) &&
+                    (s.charAt(i - 1) == s.charAt(i - offset)))
             ){
                 offset++;
                 palindrome++;
             }
 
             int repeats = 0;
-            while(i + 1 < n && s.charAt(i) == s.charAt(i + 1)){
-                i++;
+            while (i + 1 < n && s.charAt(i + 1) == s.charAt(i)){
                 repeats++;
+                i++;
             }
 
-            palindrome += ((repeats + 1) * repeats) / repeats;
+            palindrome += ((repeats  + 1) * repeats) / repeats;
         }
 
         palindrome = n + palindrome;

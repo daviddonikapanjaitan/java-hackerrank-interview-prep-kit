@@ -1,6 +1,5 @@
 package Practice.C3DictionariesAndHashMaps;
 
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,8 +20,6 @@ public class P1HashTablesRansomNote {
         s2Array.forEach((it) -> {
             s2Map.put(it, s2Map.getOrDefault(it, 0)  + 1);
         });
-
-        System.out.println(s2Map);
 
         boolean result = true;
         for(String s: s1Array){
